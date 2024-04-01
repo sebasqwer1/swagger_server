@@ -1,0 +1,16 @@
+{
+    "MODE" : "LOCAL",
+    "LOCAL":{
+        "DB":{
+            "MYSQL":{
+                "PYTHON":{
+                    "HOST":"monorail.proxy.rlwy.net",
+                    "PORT":"57395",
+                    "DB":"python",
+                    "USER":"root",
+                    "PASSWORD":"ljduObvrcBsFhOgopHvSwQinzGXFQiPY"
+                }
+            }
+        }
+    }
+}

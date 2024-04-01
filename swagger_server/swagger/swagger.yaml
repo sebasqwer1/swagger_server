@@ -1,0 +1,87 @@
+openapi: 3.0.0
+info:
+  title: autentication-ms
+  description: Microservicio para autenticación de usuarios
+  version: 1.0.0
+servers:
+- url: http://localhost:8080/api/autentication-ms/v1.0/
+  description: autentication-ms
+paths:
+  /login:
+    post:
+      tags:
+      - Autenticacion
+      description: Inicio de sesión
+      operationId: login_user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RequestLogin'
+      responses:
+        "200":
+          description: todos los usuarios
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ResponseGetUsers'
+      x-openapi-router-controller: swagger_server.controllers.autenticacion_controller
+components:
+  schemas:
+    RequestLogin:
+      type: object
+      properties:
+        user_name:
+          type: string
+          example: user_name
+        password:
+          type: string
+          example: password
+    ResponseGetUsers:
+      type: object
+      properties:
+        code:
+          type: string
+          example: "0"
+        message:
+          type: string
+          example: message
+        data:
+          $ref: '#/components/schemas/ResponseGetUsers_data'
+      example:
+        code: "0"
+        data:
+          full_name: full_name
+          user_name: name
+          rol_name: rol_name
+          id: 0
+          rol_id: 6
+          email: email
+        message: message
+    ResponseGetUsers_data:
+      type: object
+      properties:
+        id:
+          type: integer
+        user_name:
+          type: string
+          example: name
+        full_name:
+          type: string
+          example: full_name
+        email:
+          type: string
+          example: email
+        rol_id:
+          type: integer
+        rol_name:
+          type: string
+          example: rol_name
+      example:
+        full_name: full_name
+        user_name: name
+        rol_name: rol_name
+        id: 0
+        rol_id: 6
+        email: email
+
