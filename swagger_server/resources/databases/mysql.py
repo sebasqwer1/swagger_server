@@ -7,6 +7,7 @@ class Connection():
 
     @staticmethod
     def get_connection(db):
+        
 
         db_config = Connection.get_credentials(db)
 

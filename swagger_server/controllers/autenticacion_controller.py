@@ -4,7 +4,8 @@ import six
 from swagger_server.models.request_login import RequestLogin  # noqa: E501
 from swagger_server.models.response_get_users import ResponseGetUsers  # noqa: E501
 from swagger_server import util
-
+from swagger_server.use_cases.autentication_use_case import AutenticationUseCase
+from swagger_server.validators.validators import Validator
 
 def login_user(body=None):  # noqa: E501
     """login_user
@@ -18,4 +19,13 @@ def login_user(body=None):  # noqa: E501
     """
     if connexion.request.is_json:
         body = RequestLogin.from_dict(connexion.request.get_json())  # noqa: E501
-    return 'do some magic!'
+
+        flag, message = Validator.validar_login(body)
+
+        if flag:
+            use_case = AutenticationUseCase()
+            resultado = use_case.login(body)
+        else:
+            resultado = message
+
+    return resultado
